@@ -19,5 +19,4 @@ public class ReviewController {
     public BaseResponse<List<GetReviewRes>> getReview(@RequestParam Long eventIdx, @RequestParam Long userIdx) {
             return new BaseResponse<>(reviewService.getReview(eventIdx, userIdx));
     }
-
 }
