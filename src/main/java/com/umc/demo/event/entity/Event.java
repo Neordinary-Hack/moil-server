@@ -19,9 +19,14 @@ public class Event extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long eventIdx;
 
-    @ManyToOne
-    @JoinColumn(nullable = false, name = "hostIdx")
-    private User host;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userIdx", nullable = false,insertable=false, updatable=false)
+    private User user;
+
+    @Column(name="userIdx")
+    private Long userIdx;
 
     @Column(nullable = false, name = "eventDate")
     private LocalDateTime eventDate;
@@ -35,10 +40,12 @@ public class Event extends BaseEntity {
     @Column(name = "eventImg")
     private String eventImg;
 
+
+
     @Builder
-    public Event(Long eventIdx, User host, LocalDateTime eventDate, String location, String result, String eventImg) {
+    public Event(Long eventIdx, User user, LocalDateTime eventDate, String location, String result, String eventImg) {
         this.eventIdx = eventIdx;
-        this.host = host;
+        this.user = user;
         this.eventDate = eventDate;
         this.location = location;
         this.result = result;
