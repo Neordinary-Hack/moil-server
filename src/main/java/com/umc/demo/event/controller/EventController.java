@@ -19,7 +19,7 @@ public class EventController {
     private final EventService eventService;
     private final UserService userService;
 
-    public EventController(EventService eventService, UserService userService) {
+    public EventController(EventService eventService, UserService  userService) {
         this.userService = userService;
         this.eventService = eventService;
     }
@@ -48,4 +48,11 @@ public class EventController {
 
         return new BaseResponse<>(eventService.createEvent(event));
     }
+
+    @ResponseBody
+    @GetMapping("/{userIdx}/{eventIdx}")
+    public BaseResponse<List<EventListRes>> getEventDetail(@PathVariable("userIdx") Long userIdx, @PathVariable("eventIdx") Long eventIdx) {
+        return new BaseResponse<>(eventService.getEventList(userIdx));
+    }
+
 }
