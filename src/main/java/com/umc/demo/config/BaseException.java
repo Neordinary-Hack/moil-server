@@ -1,4 +1,4 @@
-package com.boardPractice.demo.config;
+package com.umc.demo.config;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.boardPractice.demo.config;
+package com.umc.demo.config;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import static com.boardPractice.demo.config.BaseResponseStatus.SUCCESS;
+import static com.umc.demo.config.BaseResponseStatus.SUCCESS;
 
 @Getter
 @AllArgsConstructor

@@ -1,4 +1,4 @@
-package com.boardPractice.demo.common;
+package com.umc.demo.common;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;

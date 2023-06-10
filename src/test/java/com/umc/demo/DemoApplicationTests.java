@@ -1,4 +1,4 @@
-package com.boardPractice.demo;
+package com.umc.demo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
