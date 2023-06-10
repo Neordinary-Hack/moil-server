@@ -1,6 +1,8 @@
 package com.umc.demo.review.service;
 
 import com.umc.demo.review.dto.GetReviewRes;
+import com.umc.demo.review.dto.PostReviewReq;
+import com.umc.demo.review.entity.Review;
 import com.umc.demo.review.repository.ReviewRepository;
 import com.umc.demo.user.entity.User;
 import com.umc.demo.user.repository.UserRepository;
@@ -24,5 +26,11 @@ public class ReviewService {
                         new GetReviewRes(review.getSeq(),
                                 user.getNickname(),
                                 review.getReview())).collect(Collectors.toList());
+    }
+
+    public void addReview(Long userIdx, Long eventIdx, PostReviewReq postReviewReq) {
+        Review review = reviewRepository.findByUserIdxAndEventIdx(userIdx, eventIdx);
+        review.setReview(postReviewReq.getReview());
+        reviewRepository.save(review);
     }
 }

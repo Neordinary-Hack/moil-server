@@ -26,9 +26,13 @@ public class Review extends BaseEntity {
 
     @Column(name="eventIdx")
     private Long eventIdx;
-    @ManyToOne
-    @JoinColumn(nullable = false, name = "userIdx")
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userIdx", nullable = false,insertable=false, updatable=false)
     private User user;
+
+    @Column(name="userIdx")
+    private Long userIdx;
 
     @Column(name = "review")
     private String review;
@@ -38,6 +42,10 @@ public class Review extends BaseEntity {
         this.seq = seq;
         this.event = event;
         this.user = user;
+        this.review = review;
+    }
+
+    public void setReview(String review) {
         this.review = review;
     }
 }
