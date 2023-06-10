@@ -3,9 +3,13 @@ package com.umc.demo.event.controller;
 import com.umc.demo.config.BaseException;
 import com.umc.demo.config.BaseResponse;
 import com.umc.demo.event.dto.EventCreateReq;
+import com.umc.demo.event.dto.EventGetRes;
 import com.umc.demo.event.dto.EventListRes;
 import com.umc.demo.event.entity.Event;
 import com.umc.demo.event.service.EventService;
+import com.umc.demo.review.entity.Review;
+import com.umc.demo.review.repository.ReviewRepository;
+import com.umc.demo.review.service.ReviewService;
 import com.umc.demo.user.dto.HomeRes;
 import com.umc.demo.user.entity.User;
 import com.umc.demo.user.service.UserService;
@@ -18,10 +22,13 @@ import java.util.List;
 public class EventController {
     private final EventService eventService;
     private final UserService userService;
+    private final ReviewService reviewService;
 
-    public EventController(EventService eventService, UserService  userService) {
+
+    public EventController(EventService eventService, UserService  userService, ReviewService reviewService) {
         this.userService = userService;
         this.eventService = eventService;
+        this.reviewService = reviewService;
     }
 
     @ResponseBody
@@ -50,9 +57,19 @@ public class EventController {
     }
 
     @ResponseBody
-    @GetMapping("/{userIdx}/{eventIdx}")
-    public BaseResponse<List<EventListRes>> getEventDetail(@PathVariable("userIdx") Long userIdx, @PathVariable("eventIdx") Long eventIdx) {
-        return new BaseResponse<>(eventService.getEventList(userIdx));
+    @GetMapping("/userIdx/{eventIdx}")
+    public BaseResponse<EventGetRes> getEventDetail(@PathVariable("eventIdx") Long eventIdx) {
+        Event event = eventService.getEvent(Long.valueOf(1), eventIdx);
+        EventGetRes eventResponse = eventService.getEventRes(Long.valueOf(1), eventIdx);
+
+        // 응답 생성
+        eventResponse.setEventIdx(eventIdx);
+        eventResponse.setUserIdx(Long.valueOf(1));
+        eventResponse.setEventDate(event.getEventDate());
+        eventResponse.setResult(event.getResult());
+        eventResponse.setEventImg(event.getEventImg());
+
+        return new BaseResponse<>(eventResponse);
     }
 
 }
