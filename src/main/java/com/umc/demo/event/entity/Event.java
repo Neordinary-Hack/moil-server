@@ -19,8 +19,8 @@ public class Event extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long eventIdx;
 
-    @ManyToOne
-    @JoinColumn(nullable = false, name = "hostIdx")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userIdx", nullable = false,insertable=false, updatable=false)
     private User host;
 
     @Column(nullable = false, name = "eventDate")
