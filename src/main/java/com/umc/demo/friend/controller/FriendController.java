@@ -1,16 +1,22 @@
 package com.umc.demo.friend.controller;
 
+import com.umc.demo.config.BaseResponse;
+import com.umc.demo.friend.dto.GetFriendRes;
 import com.umc.demo.friend.service.FriendService;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping(value = "/friends")
 public class FriendController {
-    private FriendService friendService;
+    private final FriendService friendService;
 
-    public FriendController(FriendService friendService) {
-
-        this.friendService = friendService;
+    @ResponseBody
+    @GetMapping("/{userIdx}")
+    public BaseResponse<List<GetFriendRes>> getFriend(@PathVariable("userIdx") Long userIdx) {
+        return new BaseResponse<>(friendService.getFriend(userIdx));
     }
 }
