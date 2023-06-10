@@ -1,15 +1,41 @@
 package com.umc.demo.review.entity;
 
 import com.umc.demo.common.BaseEntity;
-import jakarta.persistence.Entity;
+import com.umc.demo.event.entity.Event;
+import com.umc.demo.user.entity.User;
+import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
 
-// 테이블 이름 어노테이션으로 설정 필요
 @Getter
 @Entity
+@Table(name = "event_review")
 @NoArgsConstructor
 @DynamicInsert
 public class Review extends BaseEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "seq")
+    private Long seq;
+
+    @ManyToOne
+    @JoinColumn(nullable = false, name = "event_idx")
+    private Event event;
+
+    @ManyToOne
+    @JoinColumn(nullable = false, name = "user_idx")
+    private User user;
+
+    @Column(name = "review")
+    private String review;
+
+    @Builder
+    public Review(Long seq, Event event, User user, String review) {
+        this.seq = seq;
+        this.event = event;
+        this.user = user;
+        this.review = review;
+    }
 }
