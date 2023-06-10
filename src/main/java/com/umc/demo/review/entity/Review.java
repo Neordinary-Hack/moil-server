@@ -20,12 +20,14 @@ public class Review extends BaseEntity {
     @Column(name = "seq")
     private Long seq;
 
-    @ManyToOne
-    @JoinColumn(nullable = false, name = "event_idx")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "eventIdx", nullable = false,insertable=false, updatable=false)
     private Event event;
 
+    @Column(name="eventIdx")
+    private Long eventIdx;
     @ManyToOne
-    @JoinColumn(nullable = false, name = "user_idx")
+    @JoinColumn(nullable = false, name = "userIdx")
     private User user;
 
     @Column(name = "review")
