@@ -1,6 +1,7 @@
 package com.umc.demo.friend.entity;
 
 import com.umc.demo.common.BaseEntity;
+import com.umc.demo.user.entity.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,6 +1,7 @@
 package com.umc.demo.event.entity;
 
 import com.umc.demo.common.BaseEntity;
+import com.umc.demo.user.entity.User;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,8 +19,9 @@ public class Event extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long eventIdx;
 
+    @ManyToOne
     @JoinColumn(nullable = false, name = "hostIdx")
-    private Long hostIdx;
+    private User host;
 
     @Column(nullable = false, name = "eventDate")
     private LocalDateTime eventDate;
@@ -34,9 +36,9 @@ public class Event extends BaseEntity {
     private String eventImg;
 
     @Builder
-    public Event(Long eventIdx, Long hostIdx, LocalDateTime eventDate, String location, String result, String eventImg) {
+    public Event(Long eventIdx, User host, LocalDateTime eventDate, String location, String result, String eventImg) {
         this.eventIdx = eventIdx;
-        this.hostIdx = hostIdx;
+        this.host = host;
         this.eventDate = eventDate;
         this.location = location;
         this.result = result;
