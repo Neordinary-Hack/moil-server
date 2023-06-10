@@ -18,9 +18,12 @@ public class Friend extends BaseEntity {
     @GeneratedValue
     private Long seq;
 
-    @ManyToOne
-    @JoinColumn(nullable = false, name = "user_idx")
-    private User userIdx;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userIdx", nullable = false,insertable=false, updatable=false)
+    private User user;
+
+    @Column(name="userIdx")
+    private Long userIdx;
 
     @JoinColumn(nullable = false, name = "")
     private Long friendIdx;
