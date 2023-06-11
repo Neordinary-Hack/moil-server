@@ -49,5 +49,9 @@ public class Event extends BaseEntity {
         this.result = result;
         this.eventImg = eventImg;
     }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
 }
 

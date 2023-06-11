@@ -44,7 +44,6 @@ public class OpenAi {
             headers.setContentType(MediaType.APPLICATION_JSON);
             headers.setBearerAuth(env.getProperty("openai.key"));
 
-
             Map<String, Object> requestBody = new HashMap<>();
             requestBody.put("model", "gpt-3.5-turbo");
 
@@ -52,7 +51,6 @@ public class OpenAi {
             message.put("role", "user");
             message.put("content", str + "\n위에 대한 대답을 정리해서 200자 이내로 텍스트를 요약한 부분은 제외하고 결론과 다음 만남에 대한 피드백을 말해줘.");
             requestBody.put("messages", Collections.singletonList(message));
-
 
             RestTemplate restTemplate = new RestTemplate();
             HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(requestBody, headers);
