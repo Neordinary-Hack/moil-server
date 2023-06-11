@@ -68,9 +68,9 @@ public class ReviewService {
 
         String fieldValue = jsonNode.path("choices").get(0).path("message").path("content").asText();
 
-            Event event = eventRepository.findByEventIdx(eventIdx);
-            event.setResult(responseEntity.getBody());
-
+//            Event event = eventRepository.findByEventIdx(eventIdx);
+//
+//            event.setResult(fieldValue);
         return fieldValue;
     }
 
