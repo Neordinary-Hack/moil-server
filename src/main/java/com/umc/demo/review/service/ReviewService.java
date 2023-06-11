@@ -6,7 +6,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.umc.demo.event.entity.Event;
 import com.umc.demo.event.repository.EventRepository;
 import com.umc.demo.review.dto.GetReviewRes;
+
 import com.umc.demo.review.dto.PatchReviewReq;
+
 import com.umc.demo.review.dto.PostReviewReq;
 import com.umc.demo.review.entity.Review;
 import com.umc.demo.review.repository.ReviewRepository;
@@ -70,7 +72,6 @@ public class ReviewService {
             event.setResult(responseEntity.getBody());
 
         return fieldValue;
-
     }
 
     public void editReview(Long eventIdx, Long userIdx, PatchReviewReq patchReviewReq) {
