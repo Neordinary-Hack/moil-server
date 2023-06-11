@@ -1,9 +1,10 @@
 package com.umc.demo.review.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.umc.demo.config.BaseResponse;
 import com.umc.demo.config.BaseResponseStatus;
-import com.umc.demo.friend.service.FriendService;
 import com.umc.demo.review.dto.GetReviewRes;
+import com.umc.demo.review.dto.PatchReviewReq;
 import com.umc.demo.review.dto.PostReviewReq;
 import com.umc.demo.review.service.ReviewService;
 import lombok.RequiredArgsConstructor;
@@ -24,8 +25,13 @@ public class ReviewController {
     }
 
     @PostMapping("/{eventIdx}/{userIdx}")
-    public BaseResponse<String> addReview(@PathVariable("userIdx") Long userIdx, @PathVariable("eventIdx") Long eventIdx, @RequestBody PostReviewReq postReviewReq) {
-        reviewService.addReview(userIdx, eventIdx, postReviewReq);
+    public BaseResponse<String> addReview(@PathVariable("userIdx") Long eventIdx, @PathVariable("eventIdx") Long userIdx, @RequestBody PostReviewReq postReviewReq) throws JsonProcessingException {
+        return new BaseResponse<>(reviewService.addReview(eventIdx, userIdx, postReviewReq));
+    }
+
+    @PatchMapping("/{eventIdx}/{userIdx}")
+    public BaseResponse<String> editReview(@PathVariable("eventIdx") Long eventIdx, @PathVariable("userIdx") Long userIdx, @RequestBody PatchReviewReq patchReviewReq) {
+        reviewService.editReview(eventIdx, userIdx, patchReviewReq);
         return new BaseResponse<>(BaseResponseStatus.SUCCESS);
     }
 }
