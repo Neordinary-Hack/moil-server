@@ -26,7 +26,6 @@ public class ReviewController {
 
     @PostMapping("/{eventIdx}/{userIdx}")
     public BaseResponse<String> addReview(@PathVariable("userIdx") Long eventIdx, @PathVariable("eventIdx") Long userIdx, @RequestBody PostReviewReq postReviewReq) throws JsonProcessingException {
-        reviewService.addReview(eventIdx, userIdx, postReviewReq);
         return new BaseResponse<>(reviewService.addReview(eventIdx, userIdx, postReviewReq));
     }
 
